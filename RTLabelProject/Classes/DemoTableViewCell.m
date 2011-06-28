@@ -10,6 +10,7 @@
 
 
 @implementation DemoTableViewCell
+
 @synthesize rtLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -17,10 +18,9 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code.
-		self.rtLabel = [DemoTableViewCell textLabel];
-		[self.contentView addSubview:self.rtLabel];
-		[self.rtLabel release];
-		[self.rtLabel setBackgroundColor:[UIColor clearColor]];
+		rtLabel = [[DemoTableViewCell textLabel] retain];
+		[self.contentView addSubview:rtLabel];
+		[rtLabel setBackgroundColor:[UIColor clearColor]];
         
         [self setSelectionStyle:UITableViewCellEditingStyleNone];
     }
@@ -54,7 +54,8 @@
 
 
 - (void)dealloc {
-	[self.rtLabel release];
+	[rtLabel release];
+    
     [super dealloc];
 }
 
